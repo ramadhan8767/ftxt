@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محرر النصوص الذهبي - FTXT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-actions">
+                <button class="btn" id="developerBtn">
+                    <i class="fas fa-user-tie"></i>
+                    <span>مطور الموقع</span>
+                </button>
+                <button class="btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>تسجيل الدخول</span>
+                </button>
+            </div>
+            <div class="logo">
+                <i class="fas fa-pen-fancy"></i>
+                <span>محرر النصوص الذهبي - FTXT</span>
+            </div>
+            <div class="tagline">اكتب. احفظ. أرشيف ملفاتك بصيغة FTXT!</div>
+            <div class="user-info" id="userInfo" style="display: none;">
+                <div class="user-avatar" id="userAvatar"></div>
+                <span id="userName"></span>
+                <button class="btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>تسجيل الخروج</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="editor-container">
+            <div class="toolbar">
+                <div class="toolbar-title">محرر النصوص</div>
+                <div class="toolbar-actions">
+                    <button class="action-btn" id="saveBtn">
+                        <i class="fas fa-save"></i>
+                        <span>حفظ الملف</span>
+                    </button>
+                    <button class="action-btn action-btn-secondary" id="clearBtn">
+                        <i class="fas fa-eraser"></i>
+                        <span>مسح المحتوى</span>
+                    </button>
+                </div>
+            </div>
+            
+            <textarea id="textEditor" placeholder="ابدأ كتابتك هنا... يمكنك لصق نص أو كتابة أفكارك بحرية (الحد الأقصى لحجم الملف: 30MB)"></textarea>
+            
+            <div class="stats">
+                <div id="charCount">0 أحرف</div>
+                <div id="wordCount">0 كلمات</div>
+                <div id="sizeCount">0 ك.ب</div>
+            </div>
+        </div>
+        
+        <!-- قسم ملفات FTXT -->
+        <div class="files-container">
+            <div class="files-header">
+                <div>
+                    <i class="fas fa-folder-open"></i>
+                    <span>ملفات FTXT المحفوظة</span>
+                </div>
+                <div id="filesCount">0 ملفات</div>
+            </div>
+            
+            <div class="files-list" id="filesList">
+                <div class="empty-files">لا توجد ملفات محفوظة بعد</div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>جميع الحقوق محفوظة &copy; <span id="year"></span> - محرر النصوص الذهبي - FTXT | تطوير: <a href="https://www.facebook.com/ramadhan.8068" target="_blank">رمضان</a></p>
+        </div>
+    </footer>
+    
+    <!-- نافذة معلومات المطور -->
+    <div class="modal" id="developerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">مطور الموقع</h3>
+                <button class="close-modal" id="closeDeveloperModal">&times;</button>
+            </div>
+            <div class="developer-info">
+                <img src="https://graph.facebook.com/ramadhan.8068/picture?type=large&width=400&height=400" alt="صورة المطور" class="developer-avatar">
+                <div>
+                    <div class="developer-name">رمضان</div>
+                    <p>مطور واجهات ويب ومصمم مواقع</p>
+                </div>
+            </div>
+            <div class="developer-contact">
+                <h4>طرق التواصل:</h4>
+                <a href="https://www.facebook.com/ramadhan.8068" target="_blank" class="contact-link">
+                    <i class="fab fa-facebook"></i> فيسبوك
+                </a>
+                <a href="mailto:ramadhan.8068@facebook.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> بريد إلكتروني
+                </a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+                هذا الموقع تم تطويره خصيصاً لتلبية احتياجات كتابة وحفظ النصوص بصيغة FTXT مع إمكانية إدارة الملفات المحفوظة.
+            </p>
+        </div>
+    </div>
+    
+    <!-- نافذة تسجيل الدخول -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">تسجيل الدخول</h3>
+                <button class="close-modal" id="closeLoginModal">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="username">اسم المستخدم</label>
+                    <input type="text" id="username" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="password">كلمة المرور</label>
+                    <input type="password" id="password" class="form-input" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="action-btn action-btn-secondary" id="cancelLogin">إلغاء</button>
+                    <button type="submit" class="action-btn">تسجيل الدخول</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- نافذة إعادة تسمية الملف -->
+    <div class="modal" id="renameModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">إعادة تسمية الملف</h3>
+                <button class="close-modal" id="closeRenameModal">&times;</button>
+            </div>
+            <form id="renameForm">
+                <div class="form-group">
+                    <label class="form-label" for="newFileName">اسم الملف الجديد</label>
+                    <input type="text" id="newFileName" class="form-input" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="action-btn action-btn-secondary" id="cancelRename">إلغاء</button>
+                    <button type="submit" class="action-btn">حفظ التغيير</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
