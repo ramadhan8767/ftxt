@@ -1,5 +1,5 @@
 // API base URL - استبدل هذا بالرابط الفعلي لاستضافتك
-const API_BASE_URL = 'https://yourdomain.com/api';
+const API_BASE_URL = 'https://ramadhan8767.github.io/ftxt/';
 
 // العناصر الرئيسية
 const textEditor = document.getElementById('textEditor');
@@ -499,4 +499,5 @@ function generateId() {
 }
 
 // تهيئة التطبيق عند تحميل الصفحة
+
 document.addEventListener('DOMContentLoaded', initApp);
